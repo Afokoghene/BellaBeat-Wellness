@@ -117,7 +117,7 @@ FROM SQLPractice.dbo.DailyActivityMerged
 SELECT MIN(Total_Steps) MinSteps
 FROM SQLPractice.dbo.DailyActivityMerged
 
---- 1. What is the average number of total steps taken by users in the sample? Compare average steps by days of the week and see if there’s a trend or pattern.
+--- 1. What is the average number of total steps taken by users in the sample? Compare average steps by days of the week and see if thereâ€™s a trend or pattern.
 ---    Compare by date too and see what date has the highest average
 
 -- AVERAGE OF TOTAL STEPS TAKEN
@@ -219,6 +219,15 @@ ORDER BY DATENAME(weekday, ActivityDate)
 ---5. How do users who engage in more very active minutes compare to those who engage in more light active minutes in terms of total steps and calories burned?
 ---   Are there any correlations between activity levels, total steps and calories burned?
 
+SELECT DISTINCT UserID,
+	   ROUND(AVG(Very_Active_Minutes), 0) Avg_VeryActiveMinutes, 
+	   ROUND(AVG(LightlyActiveMinutes), 0) Avg_LightlyActiveMinutes,
+	   ROUND(AVG(Sedentary_Minutes), 0) Avg_SedentaryMinutes,
+	   ROUND(AVG(Total_Steps), 0) Avg_TotalSteps,
+	   ROUND(AVG(Calories), 0) Avg_Calories
+FROM SQLPractice.dbo.DailyActivityMerged
+GROUP BY UserID
+ORDER BY UserID
 
 --- THIS QUESTION WAS ANSWERED ON GOOGLE SHEETS AND THE DOCUMENT WILL BE ATTACHED ALONGSIDE THIS IN MY GITHUB
 
